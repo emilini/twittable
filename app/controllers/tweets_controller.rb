@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
         if @tweet.update(tweet_params)
           format.html { redirect_to @tweet, notice: 'Tweet was updated.' }
         else
-          format.html { rrender :edit }
+          format.html { render :edit }
         end
         # of if
       end

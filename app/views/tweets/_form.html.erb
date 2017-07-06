@@ -9,7 +9,7 @@
 
   <!-- loop through the errors and show them as a list -->
   <ul>
-    <% @tweet.errors.fullmessages.each do |error_message| %>
+    <% @tweet.errors.full_messages.each do |error_message| %>
       <li><%= error_message %></li>
     <% end %>
   </ul>
