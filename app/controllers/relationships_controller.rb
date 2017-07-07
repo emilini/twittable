@@ -6,14 +6,22 @@ class RelationshipsController < ApplicationController
 
       if @relationship.save
         flash[:notice] = "You're now following #{@friend.username}"
-        redict_to profile_path(@friend.id)
+        redirect_to profile_path(@friend.id)
       else
         flash[:notice] = "something went wrong, try again please!"
-        redict_to profile_path(@friend.id)
+        redirect_to profile_path(@friend.id)
       end
     #  if
   end
 # create
+
+def destroy
+  @relationship = current_user.relationships.find(params[:id])
+  @relationship.destroy
+
+  flash[:notice] = 'No longer following.'
+  redirect_to profile_path(current_user.id)
+end
 
 private
 
