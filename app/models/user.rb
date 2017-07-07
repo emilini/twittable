@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :tweets
+  has_many :likes
   has_many :relationships
   has_many :friends, through: :relationships
 
@@ -12,4 +13,8 @@ class User < ApplicationRecord
   has_many :inverse_friends, through: :inverse_relationships, source: :user
 
   validates :username, presence: true, uniqueness: true
+
+  def likes?(tweet)
+    tweet.likes.where(user_id: id).any?
+  end
 end
