@@ -1,1 +1,18 @@
+<% if current_user.likes?(@tweet) %>
+<!-- unlike button -->
+<%= link_to "Unlike", tweet_likes_path(@tweet), method: :delete, class: 'btn btn-sm btn-warning' %>
+<% else %>
+
 <%= link_to "Like", tweet_likes_path(@tweet), method: :post, class: 'btn btn-success btn-sm' %>
+
+<% end %>
+<br>
+
+<%= pluralize(@tweet.likes.count, 'Like') %>
+<br><br>
+Likes by:
+<% @tweet.likes.each do |like| %>
+  <br>
+    <%= like.user.username %>
+  <br>
+<% end %>
